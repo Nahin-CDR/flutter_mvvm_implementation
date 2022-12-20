@@ -2,7 +2,9 @@ import 'package:clean_code/resources/color.dart';
 import 'package:clean_code/resources/components/round_button.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/utils/utils.dart';
+import 'package:clean_code/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -34,6 +36,9 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     final height = MediaQuery.of(context).size.height *1;
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children:const[
-             Text("Login",style: TextStyle(color:AppColors.primaryColor),)
+             Text("Login Screen",style: TextStyle(color:AppColors.primaryColor),)
           ],
         ),
       ),
@@ -52,6 +57,7 @@ class _LoginViewState extends State<LoginView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text("eve.holt@reqres.in\npassword: cityslicka",style: TextStyle(color: Colors.grey),),
             TextFormField(
               focusNode: emailFocusNode,
               onFieldSubmitted: (value){
@@ -81,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                         },
                         child: Icon(_obsecurePassword.value?Icons.visibility_off:Icons.visibility),
                       ),
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon:const Icon(Icons.lock),
                     ),
                   );
                 }
@@ -98,10 +104,17 @@ class _LoginViewState extends State<LoginView> {
                     }else if(_passwordController.text.length<6){
                       Utils.flushBarErrorMessage("please enter 6 digit password", context);
                     }else{
-                      Utils.toastMessage("Everything is OK now");
+
+                      Map<dynamic,dynamic> data = {
+                        'email' : _emailController.text,
+                         'password' : _passwordController.text
+                      };
+                      authViewModel.loginApi(data,context);
+                      //Utils.toastMessage("Everything is OK now");
                     }
                   } ,
-                  loading: false),
+                  loading: false
+              ),
             )
           ],
         ),

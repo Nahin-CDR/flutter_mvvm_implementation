@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:clean_code/data/app_exceptions.dart';
 import 'base_api_services.dart';
 import 'package:http/http.dart' as http;
@@ -48,5 +47,4 @@ class NetworkApiService extends BaseApiServices{
         throw FetchDataException('Error occurred while communicating with server with status code ${response.statusCode}');
     }
   }
-  
 }

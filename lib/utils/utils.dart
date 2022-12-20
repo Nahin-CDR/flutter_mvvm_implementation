@@ -32,13 +32,14 @@ class Utils{
           forwardAnimationCurve: Curves.bounceIn,
           margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
           message: message,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.flushColor,
           title: "Message",
           messageColor: Colors.white,
           duration:const Duration(seconds: 5),
           reverseAnimationCurve: Curves.easeOut,
           titleColor: Colors.white,
-          icon: const Icon(Icons.error,color: Colors.deepOrange,),
+          icon: const Icon(
+              Icons.account_balance_wallet,color: Colors.white),
         )..show(context),
     );
   }
