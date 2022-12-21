@@ -95,6 +95,7 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(
               height: height*.085,
               child: RoundButton(
+                  loading:authViewModel.loading,
                   title: "Login",
                   onPress:(){
                     if(_emailController.text.isEmpty){
@@ -104,7 +105,6 @@ class _LoginViewState extends State<LoginView> {
                     }else if(_passwordController.text.length<6){
                       Utils.flushBarErrorMessage("please enter 6 digit password", context);
                     }else{
-
                       Map<dynamic,dynamic> data = {
                         'email' : _emailController.text,
                          'password' : _passwordController.text
@@ -112,8 +112,20 @@ class _LoginViewState extends State<LoginView> {
                       authViewModel.loginApi(data,context);
                       //Utils.toastMessage("Everything is OK now");
                     }
-                  } ,
-                  loading: false
+                  },
+              ),
+            ),
+            SizedBox(
+              height: height*.085
+            ),
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, RoutesName.signUp);
+              },
+              child:const Text("Don't have an account? Sign Up",
+                  style: TextStyle(
+                      color: AppColors.primaryColor
+                  )
               ),
             )
           ],
