@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:clean_code/data/app_exceptions.dart';
+import 'package:flutter/foundation.dart';
 import 'base_api_services.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,6 +30,10 @@ class NetworkApiService extends BaseApiServices{
       responseJson = returnResponse(response);
     }on SocketException{
       throw FetchDataException('No Internet Connection');
+    }
+    Map map = responseJson;
+    if(kDebugMode){
+      //print(map);
     }
     return responseJson;
   }

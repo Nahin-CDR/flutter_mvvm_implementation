@@ -48,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children:const[
-             Text("Login Screen",style: TextStyle(color:AppColors.primaryColor),)
+             Text("Login",style: TextStyle(color:AppColors.primaryColor))
           ],
         ),
       ),
@@ -57,11 +57,11 @@ class _LoginViewState extends State<LoginView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("eve.holt@reqres.in\npassword: cityslicka",style: TextStyle(color: Colors.grey),),
+            const Text("eve.holt@reqres.in\npassword: cityslicka",style: TextStyle(color: Colors.grey)),
             TextFormField(
               focusNode: emailFocusNode,
               onFieldSubmitted: (value){
-                Utils.fieldFocusChange(context, emailFocusNode,passwordFocusNode);
+                Utils.fieldFocusChange(context,emailFocusNode,passwordFocusNode);
               },
               controller: _emailController,
               decoration:const InputDecoration(
@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                 }
             ),
             SizedBox(
-              height: height*.085,
+              height: height*.09+10,
               child: RoundButton(
                   loading:authViewModel.loading,
                   title: "Login",
@@ -109,6 +109,7 @@ class _LoginViewState extends State<LoginView> {
                         'email' : _emailController.text,
                          'password' : _passwordController.text
                       };
+                      print(data);
                       authViewModel.loginApi(data,context);
                       //Utils.toastMessage("Everything is OK now");
                     }

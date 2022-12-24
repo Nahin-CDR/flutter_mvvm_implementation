@@ -1,7 +1,7 @@
 import 'package:clean_code/utils/routes/routes.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
-import 'package:clean_code/view/login_view.dart';
 import 'package:clean_code/view_model/auth_view_model.dart';
+import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_)=> AuthViewModel()),
+          ChangeNotifierProvider(create: (_)=> UserViewModel()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: RoutesName.login,
+          initialRoute: RoutesName.splash,
           onGenerateRoute: Routes.generateRoute,
         ),
     );
