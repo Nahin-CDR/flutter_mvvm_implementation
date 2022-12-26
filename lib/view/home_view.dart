@@ -59,11 +59,26 @@ class _HomeViewState extends State<HomeView> {
               case Status.completed:
               // TODO: Handle this case.
                 return ListView.builder(
-                    itemCount: 5,///value.moviesList.data!.movies!.length,
+                    itemCount: value.moviesList.data!.movies!.length,
                     itemBuilder: (context, index) {
                       return Card(
                         margin:const EdgeInsets.all(10),
-                        child: Image.network(value.moviesList.data!.movies![index].posterurl.toString()),
+                        child: Image.network(value.moviesList.data!.movies![index].posterurl.toString(),
+                          errorBuilder: (context, url, error) =>  Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin : const EdgeInsets.all(20),
+                                child : const Text("Image not found",style: TextStyle(color: Colors.black87)),
+                              ),
+                              const Icon(
+                                  Icons.error,size: 25,
+                                  color: Colors.deepOrange
+                              ),
+                            ],
+                          )
+                        ),
                       );
                     }
                 );
