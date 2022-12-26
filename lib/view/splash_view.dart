@@ -22,15 +22,24 @@ class _SplashViewState extends State<SplashView> {
   }
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text("Splash Screen",
-        style: TextStyle(
-          color:AppColors.primaryColor,
-          fontSize: 30
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:const [
+          Center(
+            child: Text("Splash Screen",
+                style: TextStyle(
+                    color:AppColors.primaryColor,
+                    fontSize: 30
+                )
+            ),
+          ),
+          Center(
+            child: CircularProgressIndicator(color: AppColors.primaryColor),
           )
-        ),
+        ],
       )
     );
   }

@@ -36,7 +36,7 @@ class Movies {
   String? storyline;
   List<String>? actors;
   dynamic imdbRating;
-  String? posterurl;
+  dynamic posterurl;
 
   Movies(
       {this.id,

@@ -27,8 +27,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-
-
     final userPreference = Provider.of<UserViewModel>(context);
     return Scaffold(
       appBar: AppBar(
@@ -61,17 +59,11 @@ class _HomeViewState extends State<HomeView> {
               case Status.completed:
               // TODO: Handle this case.
                 return ListView.builder(
-                    itemCount: value.moviesList.data!.movies!.length,
+                    itemCount: 5,///value.moviesList.data!.movies!.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        child: ListTile(
-                          title: Text(value.moviesList.data!.movies![index].title.toString(),
-                            style: TextStyle(
-                              color: AppColors.primaryColor.withOpacity(.8),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
+                        margin:const EdgeInsets.all(10),
+                        child: Image.network(value.moviesList.data!.movies![index].posterurl.toString()),
                       );
                     }
                 );
