@@ -38,8 +38,8 @@ class AuthViewModel with ChangeNotifier {
       UserViewModel userViewModel = UserViewModel();
       userViewModel.saveUser(tokenModel.token.toString());
       Timer(const Duration(seconds: 2), () {
-        Navigator.pushReplacementNamed(context, RoutesName.home);
-       // Navigator.pop(context);
+        Navigator.pop(context);
+        Navigator.pushNamed(context, RoutesName.home);
       });
 
       //value['token'].toString());

@@ -10,12 +10,12 @@ class UserViewModel with ChangeNotifier {
     return true;
   }
 
-  Future<UserModel> getUser() async {
+  Future<dynamic> getUser() async {
     final SharedPreferences getPreference =
         await SharedPreferences.getInstance();
     String? token = getPreference.getString('token');
 
-    return UserModel(token: token.toString());
+    return token;//UserModel(token: token.toString());
   }
 
   Future<bool> remove() async {

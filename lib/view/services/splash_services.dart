@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SplashService {
-  Future<UserModel> getUserData() => UserViewModel().getUser();
+  Future<dynamic> getUserData() => UserViewModel().getUser();
 
   void checkAuthentication(BuildContext context) async {
     getUserData().then((value) {
@@ -17,9 +17,9 @@ class SplashService {
         print("check authentication called");
       }
       if (kDebugMode) {
-        print(value.token);
+        print(value);
       }
-      if (value.token.toString() == 'null') {
+      if (value.toString() == 'null') {
         Timer(const Duration(seconds: 2), () {
           Navigator.pushReplacementNamed(context, RoutesName.login);
 
