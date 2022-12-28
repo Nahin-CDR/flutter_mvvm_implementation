@@ -2,6 +2,7 @@ import 'package:clean_code/utils/routes/routes.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/view_model/auth_view_model.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
+import 'package:clean_code/view_model/userlist_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,10 +20,11 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_)=> AuthViewModel()),
           ChangeNotifierProvider(create: (_)=> UserViewModel()),
+          ChangeNotifierProvider(create: (_)=>UserListViewModel())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Flutter clean Coding',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),

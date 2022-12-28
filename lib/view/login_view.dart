@@ -44,13 +44,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:const[
-             Text("Login",style: TextStyle(color:AppColors.primaryColor))
-          ],
-        ),
+        title:const Text("Login",style: TextStyle(color:AppColors.primaryColor)),
       ),
       body: SafeArea(
         child:  Column(

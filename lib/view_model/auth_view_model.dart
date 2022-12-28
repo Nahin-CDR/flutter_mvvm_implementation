@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:clean_code/model/token_model.dart';
 import 'package:clean_code/repository/auth_repository.dart';
+import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/utils/utils.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:flutter/foundation.dart';
@@ -27,12 +30,16 @@ class AuthViewModel with ChangeNotifier {
     print("login api called");
     _myRepository.loginApi(data).then((value) {
       Utils.flushBarErrorMessage("successfully logged in!\ntoken : ${value['token'].toString()}", context);
-
       UserModel tokenModel = UserModel.fromJson(value);
       UserViewModel userViewModel = UserViewModel();
-      userViewModel.saveUser(tokenModel.token.toString());//value['token'].toString());
+      userViewModel.saveUser(tokenModel.token.toString());
+      Timer(const Duration(seconds: 2), () {
+        Navigator.pushReplacementNamed(context, RoutesName.home);
+      });
+
+      //value['token'].toString());
       if (kDebugMode) {
-        ///print(value['token']);
+        print(value['token']);
       }
     }).onError((error, stackTrace) {
       print(error.toString());
