@@ -100,11 +100,11 @@ class _SignUpViewState extends State<SignUpView> {
                     title: "SignUp",
                     onPress:(){
                       if(_emailController.text.isEmpty){
-                        Utils.flushBarErrorMessage("please enter email", context);
+                        Utils.flushBarErrorMessage(message:  "please enter email",context:  context,duration: 2);
                       }else if(_passwordController.text.isEmpty){
-                        Utils.flushBarErrorMessage("please enter password", context);
+                        Utils.flushBarErrorMessage(message:  "please enter password",context:  context,duration: 2);
                       }else if(_passwordController.text.length<6){
-                        Utils.flushBarErrorMessage("please enter 6 digit password", context);
+                        Utils.flushBarErrorMessage(message:  "please enter 6 digit password",context:  context,duration: 2);
                       }else{
                         Map<dynamic,dynamic> data = {
                           'email' : _emailController.text,

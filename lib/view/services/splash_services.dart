@@ -7,7 +7,6 @@ import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class SplashService {
   Future<UserModel> getUserData() => UserViewModel().getUser();
@@ -22,7 +21,8 @@ class SplashService {
       }
       if (value.token.toString() == 'null') {
         Timer(const Duration(seconds: 2), () {
-          Navigator.pushNamed(context, RoutesName.login);
+          Navigator.pushReplacementNamed(context, RoutesName.login);
+
         });
       } else {
         Timer(const Duration(seconds: 3), () {

@@ -25,7 +25,7 @@ class Utils{
     );
   }
 
-  static void flushBarErrorMessage(String message,BuildContext context){
+  static void flushBarErrorMessage({required String message,required BuildContext context,required int duration}){
     showFlushbar(context: context,
         flushbar:Flushbar(
           borderRadius: BorderRadius.circular(20),
@@ -35,7 +35,7 @@ class Utils{
           backgroundColor: AppColors.flushColor,
           title: "Message",
           messageColor: Colors.white,
-          duration:const Duration(seconds: 5),
+          duration: Duration(seconds: duration),
           reverseAnimationCurve: Curves.easeOut,
           titleColor: Colors.white,
           icon: const Icon(

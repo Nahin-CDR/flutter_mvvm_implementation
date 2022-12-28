@@ -29,12 +29,17 @@ class AuthViewModel with ChangeNotifier {
     setLoading(true);
     print("login api called");
     _myRepository.loginApi(data).then((value) {
-      Utils.flushBarErrorMessage("successfully logged in!\ntoken : ${value['token'].toString()}", context);
+      Utils.flushBarErrorMessage(
+          message:  "successfully logged in!\ntoken : ${value['token'].toString()}",
+          context: context,
+          duration: 2
+      );
       UserModel tokenModel = UserModel.fromJson(value);
       UserViewModel userViewModel = UserViewModel();
       userViewModel.saveUser(tokenModel.token.toString());
       Timer(const Duration(seconds: 2), () {
         Navigator.pushReplacementNamed(context, RoutesName.home);
+       // Navigator.pop(context);
       });
 
       //value['token'].toString());
@@ -42,8 +47,10 @@ class AuthViewModel with ChangeNotifier {
         print(value['token']);
       }
     }).onError((error, stackTrace) {
-      print(error.toString());
-      Utils.flushBarErrorMessage(error.toString(), context);
+     if(kDebugMode){
+       print(error.toString());
+     }
+      Utils.flushBarErrorMessage(message:  error.toString(),context:  context,duration: 3);
     });
     setLoading(false);
   }
@@ -52,15 +59,23 @@ class AuthViewModel with ChangeNotifier {
     setSignUpLoading(true);
 
     _myRepository.loginApi(data).then((value) {
-      Utils.flushBarErrorMessage("successfully signed Up!\ntoken : ${value['token'].toString()}",context);
+      Utils.flushBarErrorMessage(
+          message: "successfully signed Up!\ntoken : ${value['token'].toString()}",
+          context:  context,
+          duration: 2
+      );
       UserViewModel userViewModel = UserViewModel();
       userViewModel.saveUser(value['token']);
       if (kDebugMode) {
-        //print(value['token']);
+        print(value['token']);
       }
     }).onError((error, stackTrace) {
       setSignUpLoading(true);
-      Utils.flushBarErrorMessage(error.toString(), context);
+      Utils.flushBarErrorMessage(
+          message:  error.toString(),
+          context:  context,
+          duration: 3
+      );
     });
     setSignUpLoading(false);
   }

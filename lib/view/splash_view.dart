@@ -27,8 +27,8 @@ class _SplashViewState extends State<SplashView> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children:const [
-          Center(
+        children: [
+         const Center(
             child: Text("Splash Screen",
                 style: TextStyle(
                     color:AppColors.primaryColor,
@@ -36,8 +36,11 @@ class _SplashViewState extends State<SplashView> {
                 )
             ),
           ),
-          Center(
-            child: CircularProgressIndicator(color: AppColors.primaryColor),
+          Container(
+            margin:const EdgeInsets.only(top: 30),
+            child:const Center(
+              child: CircularProgressIndicator(color: AppColors.primaryColor),
+            ),
           )
         ],
       )
