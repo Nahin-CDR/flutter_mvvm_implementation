@@ -12,7 +12,7 @@ class NetworkApiService extends BaseApiServices{
     dynamic responseJson;
     try{
       final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
-      responseJson = returnResponse(response);
+      return returnResponse(response);
     }on SocketException{
       throw FetchDataException('No Internet Connection');
     }
@@ -33,7 +33,7 @@ class NetworkApiService extends BaseApiServices{
     }
     Map map = responseJson;
     if(kDebugMode){
-      //print(map);
+      print(map);
     }
     return responseJson;
   }
@@ -43,6 +43,7 @@ class NetworkApiService extends BaseApiServices{
     switch (response.statusCode){
       case 200 :
         dynamic responseJson = jsonDecode(response.body);
+        //print(responseJson);
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());

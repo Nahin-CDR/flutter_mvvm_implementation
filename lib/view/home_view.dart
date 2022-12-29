@@ -18,6 +18,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
   HomeViewViewModel homeViewViewModel = HomeViewViewModel();
+  UserViewModel userPreference = UserViewModel();
   @override
   void initState() {
     // TODO: implement initState
@@ -28,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final userPreference = Provider.of<UserViewModel>(context);
+    //final userPreference = Provider.of<UserViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -38,7 +39,16 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           InkWell(
             onTap: () {
-              userPreference.remove().then((value) => Navigator.pushNamed(context, RoutesName.userList));
+              Navigator.pushNamed(context, RoutesName.album);
+            },
+            child:Container(
+              margin:const EdgeInsets.all(10),
+              child:const Icon(Icons.all_inbox,color: Colors.black54,),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, RoutesName.userList);
             },
             child:Container(
               margin:const EdgeInsets.all(10),
@@ -55,7 +65,8 @@ class _HomeViewState extends State<HomeView> {
               child:const Icon(Icons.logout,color: Colors.black54
             ),
           ),
-        )],
+        )
+        ],
       ),
       body: ChangeNotifierProvider<HomeViewViewModel>(
         create:(BuildContext context)=> homeViewViewModel,

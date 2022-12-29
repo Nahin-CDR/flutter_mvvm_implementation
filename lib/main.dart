@@ -1,5 +1,7 @@
+import 'package:clean_code/model/album_model.dart';
 import 'package:clean_code/utils/routes/routes.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
+import 'package:clean_code/view_model/album_view_model.dart';
 import 'package:clean_code/view_model/auth_view_model.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:clean_code/view_model/userlist_view_model.dart';
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_)=> AuthViewModel()),
           ChangeNotifierProvider(create: (_)=> UserViewModel()),
-          ChangeNotifierProvider(create: (_)=>UserListViewModel())
+          ChangeNotifierProvider(create: (_)=>UserListViewModel()),
+          ChangeNotifierProvider(create: (_)=>AlbumViewViewModel())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -7,4 +7,5 @@ class RoutesName {
   static const String home = 'home_screen';
   static const String splash = 'splash_screen';
   static const String userList = 'userList_screen';
+  static const String album = 'album_screen';
 }
