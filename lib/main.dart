@@ -3,6 +3,7 @@ import 'package:clean_code/utils/routes/routes.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/view_model/album_view_model.dart';
 import 'package:clean_code/view_model/auth_view_model.dart';
+import 'package:clean_code/view_model/comment_view_model.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:clean_code/view_model/userlist_view_model.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_)=> AuthViewModel()),
           ChangeNotifierProvider(create: (_)=> UserViewModel()),
           ChangeNotifierProvider(create: (_)=>UserListViewModel()),
-          ChangeNotifierProvider(create: (_)=>AlbumViewViewModel())
+          ChangeNotifierProvider(create: (_)=>AlbumViewViewModel()),
+          ChangeNotifierProvider(create: (_)=>CommentViewViewModel())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: RoutesName.splash,
+          initialRoute: RoutesName.home,
           onGenerateRoute: Routes.generateRoute,
         ),
     );

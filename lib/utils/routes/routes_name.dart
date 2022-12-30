@@ -8,4 +8,5 @@ class RoutesName {
   static const String splash = 'splash_screen';
   static const String userList = 'userList_screen';
   static const String album = 'album_screen';
+  static const String comments = 'comments_screen';
 }
