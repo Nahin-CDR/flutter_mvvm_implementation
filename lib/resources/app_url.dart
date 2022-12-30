@@ -9,9 +9,9 @@ class AppUrl{
   
   static var jsonPlaceHolderBaseUrl = 'https://jsonplaceholder.typicode.com';
   static var postsEndPointUrl = '$jsonPlaceHolderBaseUrl/posts';
-  static var commentsEndPointUrl = '$jsonPlaceHolderBaseUrl/comments';
-  static var albumEndPointUrl = '$jsonPlaceHolderBaseUrl/albums';
-  static var photosEndPointUrl = '$jsonPlaceHolderBaseUrl/photos';
+  static var commentsEndPointUrl = '$jsonPlaceHolderBaseUrl/comments';//done
+  static var albumEndPointUrl = '$jsonPlaceHolderBaseUrl/albums'; //done
+  static var photosEndPointUrl = '$jsonPlaceHolderBaseUrl/photos';//done
   static var todosEndPointUrl = '$jsonPlaceHolderBaseUrl/todos';
   static var usersEndPointUrl = '$jsonPlaceHolderBaseUrl/users';
 

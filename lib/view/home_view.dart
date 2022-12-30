@@ -39,6 +39,15 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           InkWell(
             onTap: () {
+              Navigator.pushNamed(context, RoutesName.photos);
+            },
+            child:Container(
+              margin:const EdgeInsets.all(10),
+              child:const Icon(Icons.photo_camera_outlined,color: Colors.black54,),
+            ),
+          ),
+          InkWell(
+            onTap: () {
               Navigator.pushNamed(context, RoutesName.comments);
             },
             child:Container(

@@ -4,6 +4,7 @@ import 'package:clean_code/view/album_view.dart';
 import 'package:clean_code/view/comments_view.dart';
 import 'package:clean_code/view/home_view.dart';
 import 'package:clean_code/view/login_view.dart';
+import 'package:clean_code/view/photo_view.dart';
 import 'package:clean_code/view/signup_view.dart';
 import 'package:clean_code/view/splash_view.dart';
 import 'package:clean_code/view/userlist_view.dart';
@@ -26,6 +27,8 @@ class Routes{
         return MaterialPageRoute(builder: (BuildContext context)=> const AlbumView());
       case RoutesName.comments:
         return MaterialPageRoute(builder: (BuildContext context)=>const CommentView());
+      case RoutesName.photos:
+        return MaterialPageRoute(builder: (BuildContext context) => const PhotoView());
       default:
         return MaterialPageRoute(builder: (_){
           return const Scaffold(
