@@ -39,6 +39,15 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           InkWell(
             onTap: () {
+              Navigator.pushNamed(context, RoutesName.todos);
+            },
+            child:Container(
+              margin:const EdgeInsets.all(10),
+              child:const Icon(Icons.list,color: Colors.black54,),
+            ),
+          ),
+          InkWell(
+            onTap: () {
               Navigator.pushNamed(context, RoutesName.photos);
             },
             child:Container(
@@ -138,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
                               Expanded(
                                   flex: 1,
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 30),
+                                    margin:const EdgeInsets.only(left: 30),
                                     child: Image.network(value.moviesList.data!.movies![index].posterurl.toString(),
                                       height: 100,
                                       errorBuilder: (context, url, error) =>const Icon(

@@ -5,7 +5,7 @@ import 'package:clean_code/resources/app_url.dart';
 import 'package:flutter/foundation.dart';
 
 class PhotoRepository{
-  BaseApiServices _baseApiServices = NetworkApiService();
+  final BaseApiServices _baseApiServices = NetworkApiService();
 
   Future<dynamic>fetchPhotos()async{
 

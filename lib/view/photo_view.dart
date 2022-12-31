@@ -46,7 +46,13 @@ class _PhotoViewState extends State<PhotoView> {
                     itemBuilder: (context,index){
                       return Container(
                         margin:const EdgeInsets.all(15),
-                        child: Image.network(value.photos.data!.data[index].url.toString()),
+                        child: Image.network(
+                            value.photos.data!.data[index].url.toString(),
+                            errorBuilder: (context, url, error) =>const Icon(
+                              Icons.error,size: 50,
+                              color: Colors.deepOrange
+                              ),
+                        ),
                       );
                     });
               default:

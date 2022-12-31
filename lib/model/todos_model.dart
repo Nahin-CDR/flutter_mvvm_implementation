@@ -1,24 +1,53 @@
+// To parse this JSON data, do
+//
+//     final todosModel = todosModelFromJson(jsonString);
+
+import 'dart:convert';
+
+TodosModel todosModelFromJson(String str) => TodosModel.fromJson(json.decode(str));
+
+String todosModelToJson(TodosModel data) => json.encode(data.toJson());
+
 class TodosModel {
-  int? userId;
-  int? id;
-  String? title;
-  bool? completed;
+  TodosModel({
+    required this.data,
+  });
 
-  TodosModel({this.userId, this.id, this.title, this.completed});
+  List<Datum> data;
 
-  TodosModel.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
-    id = json['id'];
-    title = json['title'];
-    completed = json['completed'];
-  }
+  factory TodosModel.fromJson(Map<String, dynamic> json) => TodosModel(
+    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['userId'] = userId;
-    data['id'] = id;
-    data['title'] = title;
-    data['completed'] = completed;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
+}
+
+class Datum {
+  Datum({
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.completed,
+  });
+
+  int userId;
+  int id;
+  String title;
+  bool completed;
+
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    userId: json["userId"],
+    id: json["id"],
+    title: json["title"],
+    completed: json["completed"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "userId": userId,
+    "id": id,
+    "title": title,
+    "completed": completed,
+  };
 }
