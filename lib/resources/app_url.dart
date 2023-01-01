@@ -12,7 +12,11 @@ class AppUrl{
   static var commentsEndPointUrl = '$jsonPlaceHolderBaseUrl/comments';//done
   static var albumEndPointUrl = '$jsonPlaceHolderBaseUrl/albums'; //done
   static var photosEndPointUrl = '$jsonPlaceHolderBaseUrl/photos';//done
-  static var todosEndPointUrl = '$jsonPlaceHolderBaseUrl/todos';
+  static var todosEndPointUrl = '$jsonPlaceHolderBaseUrl/todos';//done
   static var usersEndPointUrl = '$jsonPlaceHolderBaseUrl/users';
 
+  /// Platzi Fake Store API
+  //Fake Store api docs : https://api.escuelajs.co/docs
+  static var fakeStoreApiBaseUrl = 'https://fakestoreapi.com';
+  static var fakeStoreProductsEndPoint = '$fakeStoreApiBaseUrl/products';
 }

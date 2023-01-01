@@ -5,6 +5,7 @@ import 'package:clean_code/view_model/album_view_model.dart';
 import 'package:clean_code/view_model/auth_view_model.dart';
 import 'package:clean_code/view_model/comment_view_model.dart';
 import 'package:clean_code/view_model/photo_view_model.dart';
+import 'package:clean_code/view_model/product_view_model.dart';
 import 'package:clean_code/view_model/todos_view_model.dart';
 import 'package:clean_code/view_model/user_view_model.dart';
 import 'package:clean_code/view_model/userlist_view_model.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_)=>AlbumViewViewModel()),
           ChangeNotifierProvider(create: (_)=>CommentViewViewModel()),
           ChangeNotifierProvider(create: (_) => PhotoViewViewModel()),
-          ChangeNotifierProvider(create: (_)=>TodosViewViewModel())
+          ChangeNotifierProvider(create: (_)=>TodosViewViewModel()),
+          ChangeNotifierProvider(create: (_)=>ProductViewViewModel()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

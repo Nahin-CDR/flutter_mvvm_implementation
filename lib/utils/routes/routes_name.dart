@@ -11,4 +11,5 @@ class RoutesName {
   static const String comments = 'comments_screen';
   static const String photos = 'photo_screen';
   static const String todos = 'todos_screen';
+  static const String products = 'product_screen';
 }

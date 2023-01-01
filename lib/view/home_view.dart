@@ -32,6 +32,34 @@ class _HomeViewState extends State<HomeView> {
     //final userPreference = Provider.of<UserViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer:SafeArea(
+        child:  Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                duration:Duration(seconds: 4),
+                decoration:BoxDecoration(
+                  color: AppColors.primaryColor,
+                ),
+                child: Text("Ecommerce View",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                    )
+                ),
+              ),
+              ListTile(
+                title:const Text('Products'),
+                leading:const Icon(Icons.production_quantity_limits_sharp),
+                onTap: (){
+                  Navigator.pushNamed(context,RoutesName.products);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title:const Text("Home",style: TextStyle(color: Colors.black54),),
