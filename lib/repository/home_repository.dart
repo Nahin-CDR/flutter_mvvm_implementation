@@ -10,9 +10,10 @@ class HomeRepository{
 
   final BaseApiServices _baseApiServices = NetworkApiService();
 
-  Future<MovieListModel> fetchMoviesList()async{
+  Future<dynamic> fetchMoviesList()async{
+    dynamic response;
     try{
-      dynamic response = await _baseApiServices.getGetApiResponse(AppUrl.movieList);
+      response = await _baseApiServices.getGetApiResponse(AppUrl.movieList);
       return MovieListModel.fromJson(response);
     }catch(error){
       Utils.toastMessage(error.toString());

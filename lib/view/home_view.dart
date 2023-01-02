@@ -1,3 +1,4 @@
+import 'package:clean_code/repository/home_repository.dart';
 import 'package:clean_code/resources/color.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/utils/utils.dart';
@@ -138,94 +139,106 @@ class _HomeViewState extends State<HomeView> {
                 return const Text(
                     "Error", style: TextStyle(color: Colors.red, fontSize: 30));
               case Status.completed:
-              // TODO: Handle this case.
-                return ListView.builder(
-                    itemCount: value.moviesList.data!.movies!.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onLongPress: (){
-                          final String message = value.moviesList.data!.movies![index].storyline.toString();
-                          // Utils.toastMessage(message);
-                          Utils.flushBarErrorMessage(message: "storyLine : $message",context:  context,duration: 10);
-                        },
-                        onTap: (){
-                          final String message = value.moviesList.data!.movies![index].releaseDate.toString();
-                         // Utils.toastMessage(message);
-                          Utils.flushBarErrorMessage(message:  "release Date : $message",context:context,duration:3);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.blueAccent.withOpacity(.1),
-                                  spreadRadius: 4,
-                                  blurRadius: 2,
-                                  offset: const Offset(0, 1), // changes position of shadow
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          height: 150,
-                          margin:const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    margin:const EdgeInsets.only(left: 30),
-                                    child: Image.network(value.moviesList.data!.movies![index].posterurl.toString(),
-                                      height: 100,
-                                      errorBuilder: (context, url, error) =>const Icon(
-                                          Icons.error,size: 50,
-                                          color: Colors.deepOrange
-                                      ),
-                                    ),
-                                  )),
-                              Expanded(
-                                  flex: 3,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        margin:const EdgeInsets.only(left: 20),
-                                        child: Text(value.moviesList.data!.movies![index].title.toString(),
-                                            style:const TextStyle(color: AppColors.primaryColor)
+                if(value.moviesList.data!.movies == null){
+                  return  Center(
+                    child: Text("Server didn't serve data :(",style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2,
+                        color: Colors.black87.withOpacity(.6)
+                    )),
+                  );
+                }else{
+                  return ListView.builder(
+                      itemCount: value.moviesList.data!.movies!.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onLongPress: (){
+                            final String message = value.moviesList.data!.movies![index].storyline.toString();
+                            // Utils.toastMessage(message);
+                            Utils.flushBarErrorMessage(message: "storyLine : $message",context:  context,duration: 10);
+                          },
+                          onTap: (){
+                            final String message = value.moviesList.data!.movies![index].releaseDate.toString();
+                            // Utils.toastMessage(message);
+                            Utils.flushBarErrorMessage(message:  "release Date : $message",context:context,duration:3);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.blueAccent.withOpacity(.1),
+                                    spreadRadius: 4,
+                                    blurRadius: 2,
+                                    offset: const Offset(0, 1), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            height: 150,
+                            margin:const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      margin:const EdgeInsets.only(left: 30),
+                                      child: Image.network(value.moviesList.data!.movies![index].posterurl.toString(),
+                                        height: 100,
+                                        errorBuilder: (context, url, error) =>const Icon(
+                                            Icons.error,size: 50,
+                                            color: Colors.deepOrange
                                         ),
                                       ),
-                                      Container(
-                                        margin:const EdgeInsets.only(left: 20),
-                                        child: Text("Genres : ${value.moviesList.data!.movies![index].genres.toString()}",
-                                            style:const TextStyle(
-                                                color: Colors.deepOrange,
-                                                fontSize: 10
+                                    )),
+                                Expanded(
+                                    flex: 3,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin:const EdgeInsets.only(left: 20),
+                                          child: Text(value.moviesList.data!.movies![index].title.toString(),
+                                              style:const TextStyle(color: AppColors.primaryColor)
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:const EdgeInsets.only(left: 20),
+                                          child: Text("Genres : ${value.moviesList.data!.movies![index].genres.toString()}",
+                                              style:const TextStyle(
+                                                  color: Colors.deepOrange,
+                                                  fontSize: 10
+                                              )
+                                          ),
+                                        ),
+                                        Container(
+                                            margin:const EdgeInsets.only(left: 20,top: 10),
+                                            width: MediaQuery.of(context).size.width/2,
+                                            child: Text("Actors : ${value.moviesList.data!.movies![index].actors.toString()}",
+                                              style:const TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.blueGrey
+                                              ),
                                             )
-                                        ),
-                                      ),
-                                      Container(
-                                          margin:const EdgeInsets.only(left: 20,top: 10),
-                                          width: MediaQuery.of(context).size.width/2,
-                                          child: Text("Actors : ${value.moviesList.data!.movies![index].actors.toString()}",
-                                            style:const TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.blueGrey
-                                            ),
-                                          )
-                                      )
-                                    ],
-                                  )
-                              )
-                            ],
+                                        )
+                                      ],
+                                    )
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                );
+                        );
+                      }
+                  );
+                }
+              // TODO: Handle this case.
+
               default :
-                return const Text("default");
+                return const Center(child: Text("default"),);
             }
           },
         ),

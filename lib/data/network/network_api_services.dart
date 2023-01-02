@@ -9,14 +9,12 @@ import 'package:http/http.dart' as http;
 class NetworkApiService extends BaseApiServices{
   @override
   Future getGetApiResponse(String url) async {
-    dynamic responseJson;
     try{
       final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
       return returnResponse(response);
     }on SocketException{
       throw FetchDataException('No Internet Connection');
     }
-    return responseJson;
   }
 
   @override
@@ -50,6 +48,8 @@ class NetworkApiService extends BaseApiServices{
       case 404:
         throw UnAuthorisedException(response.body.toString());
       default :
+        //print(response.body);
+        //return response;
         throw FetchDataException('Error occurred while communicating with server with status code ${response.statusCode}');
     }
   }
