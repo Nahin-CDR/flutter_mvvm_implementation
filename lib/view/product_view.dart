@@ -1,30 +1,26 @@
-import 'package:clean_code/repository/product_repository.dart';
+import 'package:clean_code/resources/components/product_view_components/product_container.dart';
+import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../data/response/status.dart';
 import '../resources/color.dart';
 
 
 class ProductView extends StatefulWidget {
   const ProductView({Key? key}) : super(key: key);
-
   @override
   State<ProductView> createState() => _ProductViewState();
 }
 
 class _ProductViewState extends State<ProductView> {
-
   ProductViewViewModel productViewViewModel = ProductViewViewModel();
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     productViewViewModel.fetchProducts();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +42,13 @@ class _ProductViewState extends State<ProductView> {
                 return const Center(
                   child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 1),
                 );
+              case Status.error:
+                return const Center(
+                  child: Text("Error Occurred !",style: TextStyle(color: Colors.deepOrange,fontSize: 20),),
+                );
               case Status.completed:
                 return Container(
-                  padding: EdgeInsets.only(left: 15,right: 15,top: 15),
+                  padding:const EdgeInsets.only(left: 15,right: 15,top: 15),
                   //margin:const EdgeInsets.all(0),
                   child: ListView(
                     children: [
@@ -62,23 +62,23 @@ class _ProductViewState extends State<ProductView> {
                         ),
                         itemCount: value.products.data!.data.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.only(left: 5,right: 5,top: 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.blueAccent.withOpacity(.1),
-                                    spreadRadius: 4,
-                                    blurRadius: 2,
-                                    offset: const Offset(0, 1), // changes position of shadow
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Center(
-                              child: Image.network(value.products.data!.data[index].image.toString()),
-                            ),
+                          return InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(
+                                  context,
+                                  RoutesName.productDetails,
+                                  arguments: ProductArguments(
+                                      id: value.products.data!.data[index].id,
+                                      title: value.products.data!.data[index].title,
+                                      price: value.products.data!.data[index].price,
+                                      description: value.products.data!.data[index].description,
+                                      category: value.products.data!.data[index].category,
+                                      image: value.products.data!.data[index].image,
+                                      rating: value.products.data!.data[index].rating
+                                  )
+                              );
+                            },
+                            child: productContainer(imgUrl: value.products.data!.data[index].image.toString()),
                           );
                         },
                       )
@@ -93,4 +93,25 @@ class _ProductViewState extends State<ProductView> {
       ),
     );
   }
+}
+
+
+class ProductArguments{
+  dynamic id;
+  dynamic title;
+  dynamic price;
+  dynamic description;
+  dynamic category;
+  dynamic image;
+  dynamic rating;
+
+  ProductArguments({
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.category,
+    required this.image,
+    required this.rating
+  });
 }

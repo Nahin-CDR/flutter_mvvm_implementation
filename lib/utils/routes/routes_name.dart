@@ -12,4 +12,6 @@ class RoutesName {
   static const String photos = 'photo_screen';
   static const String todos = 'todos_screen';
   static const String products = 'product_screen';
+  static const String productDetails = 'product_details';
+  static const String test = 'test_screen';
 }

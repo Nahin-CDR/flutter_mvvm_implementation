@@ -1,4 +1,3 @@
-import 'package:clean_code/model/album_model.dart';
 import 'package:clean_code/utils/routes/routes.dart';
 import 'package:clean_code/utils/routes/routes_name.dart';
 import 'package:clean_code/view_model/album_view_model.dart';
@@ -18,7 +17,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
